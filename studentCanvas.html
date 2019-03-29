@@ -56,7 +56,8 @@
   An alternative text describing what your canvas displays. 
 </canvas>
 
-	<br><input type="file" id="myFile" size="50" onchange="myFunction()"><br>
+	<br>
+	<br>
 
 	<label for="color-input" id="color-label" style="background-color: red"></label>
 	<input type="checkbox" id="color-input" checked></input>
@@ -76,8 +77,6 @@
 			var radius=20;
 			canvas.width=window.innerWidth*.8
 			canvas.height=window.innerHeight*.8
-			
-			draw()
 		
 			function draw(){
 				ctx.beginPath();
@@ -100,7 +99,8 @@
 		
 			window.addEventListener('keydown', function(e){
 				if (e.keyCode == '38'){
-					radius+=1
+					radius+=1;
+					{e.preventDefault()}
 				}
 		
 				if (e.keyCode == '40'){
@@ -108,6 +108,7 @@
 					if (radius<=0){
 						radius=1
 					}
+					{e.preventDefault()}
 				}
 		
 				if (e.keyCode == '82'){
@@ -130,9 +131,10 @@
 				const context=canvas.getContext("2d");
 				context.clearRect(0,0,canvas.width, canvas.height)
 				}
+				{e.preventDefault()}
 		
 				draw();
-			})
+			}, false)
 		
 			var colorBlock = document.getElementById('color-block');
 			var ctx1 = colorBlock.getContext('2d');
